@@ -1,0 +1,15 @@
+//configured to IDE (vscode)
+{
+  "compilerOptions": {
+    "lib": ["es5", "es6", "DOM"],
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true
+  }
+}

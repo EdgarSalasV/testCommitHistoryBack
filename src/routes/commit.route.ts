@@ -3,12 +3,15 @@ import { get } from "../controllers/commit";
 
 const router: Router = Router();
 
-router.get("/commit/all", get.getAll);
-router.get("/commit/:id", (req: Request, res: Response) => {
-  const { id } = req.params;
+router.get("/commit/:user/:repository/all", get.getAll);
 
-  console.log("ORA PERRO", id);
-  res.send("OLI");
-});
+router.route("/commit/:id")
+  .get((req: Request, res: Response) => {
+    const { id } = req.params;
+    res.send("GetCommitById");
+  })
+  .post((req: Request, res: Response)=> res.send("post"))
+  .put((req: Request, res: Response)=> res.send("put"))
+  .delete((req: Request, res: Response)=> res.send("delete"));
 
 export default router;

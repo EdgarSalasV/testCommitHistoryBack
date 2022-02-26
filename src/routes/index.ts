@@ -5,6 +5,6 @@ import user from "./user.route";
 
 const router: Router = Router();
 
-router.use([commit, user]);
+router.use("/api/v1",[commit, user]);
 
 export default router;

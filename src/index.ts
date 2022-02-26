@@ -11,7 +11,7 @@ async function main() {
   app.use(cors());
   app.use(express.json());
 
-  app.use("/api/v1",routes);
+  app.use(routes);
   
   app.listen(PORT, () =>
     console.log(`server running on ${URL_GENERAL + PORT}`)
