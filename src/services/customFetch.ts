@@ -5,7 +5,7 @@ export const customFetch = async (url: string): Promise<any | number> =>
   // url, method, {}
   {
     try {
-      const { data } = await axios.get(`${API_GIT}${url}`);
+      const { data }: any = await axios.get(`${API_GIT}${url}`);
       return data;
     } catch (error: unknown | AxiosError) {
       if (axios.isAxiosError(error)) {

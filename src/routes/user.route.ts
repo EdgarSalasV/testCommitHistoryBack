@@ -6,7 +6,7 @@ router.get("/all1", (req: Request, res: Response) => {
   res.send("test all");
 });
 
-router.get("git/:id", (req: Request, res: Response) => {
+router.get("/git/:id", (req: Request, res: Response) => {
   const { id } = req.params;
   res.send("test git");
 });

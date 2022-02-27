@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
-import { isBoolean, isNumber } from "lodash";
+import { isNumber } from "lodash";
 import { customFetch } from "../../services/customFetch";
+import { iCommit } from "../../types/commit/commit.types";
 import { iCommitAll } from "../../types/commit/commitAll.types";
 
 const getAll = async (req: Request, res: Response) => {
@@ -10,14 +11,25 @@ const getAll = async (req: Request, res: Response) => {
 
   const data: iCommitAll[] = await customFetch(url);
   if (isNumber(data)) res.sendStatus(data);
-  
+
   res.send({
     path: "getAllCommits",
     data,
   });
 };
 
+const getById = async (req: Request, res: Response) => {
+  const { user, repository, id } = req.params;
+
+  const url = `/repos/${user}/${repository}/git/commits/${id}`;
+  
+  const data: iCommit = await customFetch(url);
+  if (isNumber(data)) res.sendStatus(data);
+
+  res.send(data);
+};
+
 export default {
   getAll,
-  // ...
+  getById
 };
