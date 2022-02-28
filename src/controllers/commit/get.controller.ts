@@ -6,12 +6,15 @@ import { iCommitAll } from "../../types/commit/commitAll.types";
 
 const getAll = async (req: Request, res: Response) => {
   const { user, repository } = req.params;
+  const { limit } = req.query;
 
   const url = `/repos/${user}/${repository}/commits`;
 
-  const data: iCommitAll[] = await customFetch(url);
+  let data: iCommitAll[] = await customFetch(url);
   if (isNumber(data)) res.sendStatus(data);
 
+  if (limit && data.length > +limit) data = data.splice(0, +limit);
+    
   res.send({
     path: "getAllCommits",
     count: data.length,
@@ -22,8 +25,8 @@ const getAll = async (req: Request, res: Response) => {
 const getById = async (req: Request, res: Response) => {
   const { user, repository, id } = req.params;
 
-  const url = `/repos/${user}/${repository}/gitt/commits/${id}`;
-  
+  const url = `/repos/${user}/${repository}/git/commits/${id}`;
+
   const data: iCommit = await customFetch(url);
   if (isNumber(data)) res.sendStatus(data);
 
@@ -36,5 +39,5 @@ const getById = async (req: Request, res: Response) => {
 
 export default {
   getAll,
-  getById
+  getById,
 };
