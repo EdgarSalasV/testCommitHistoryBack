@@ -14,6 +14,7 @@ const getAll = async (req: Request, res: Response) => {
 
   res.send({
     path: "getAllCommits",
+    count: data.length,
     data,
   });
 };
@@ -21,12 +22,16 @@ const getAll = async (req: Request, res: Response) => {
 const getById = async (req: Request, res: Response) => {
   const { user, repository, id } = req.params;
 
-  const url = `/repos/${user}/${repository}/git/commits/${id}`;
+  const url = `/repos/${user}/${repository}/gitt/commits/${id}`;
   
   const data: iCommit = await customFetch(url);
   if (isNumber(data)) res.sendStatus(data);
 
-  res.send(data);
+  res.send({
+    path: "getCommitById",
+    count: 1,
+    data,
+  });
 };
 
 export default {
